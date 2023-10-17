@@ -21,12 +21,12 @@ jobs:
       - run: |
           git config --global user.name "Shummy1991"
           git config --global user.email "shummy1991@gmail.com"
-      - run: |
-          set -x
+      # - run: |
+          # set -x
 
-          echo '//npm.pkg.github.com/:_authToken=${{ secrets.PACKAGE_DEPLOYER_PAT }}' > .npmrc
-          echo '@shummy1991:registry=https://npm.pkg.github.com' >> .npmrc
-          echo 'always-auth=true' >> .npmrc
+          # echo '//npm.pkg.github.com/:_authToken=${{ secrets.PACKAGE_DEPLOYER_PAT }}' > .npmrc
+          # echo '@shummy1991:registry=https://npm.pkg.github.com' >> .npmrc
+          # echo 'always-auth=true' >> .npmrc
       - run: npm ci
       - run: npm i @shummy1991/package-test@latest
       - run: git add .
