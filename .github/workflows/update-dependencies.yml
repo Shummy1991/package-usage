@@ -28,8 +28,8 @@ jobs:
           echo '@shummy1991:registry=https://npm.pkg.github.com' >> .npmrc
           echo 'always-auth=true' >> .npmrc
       - run: npm ci
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - run: git add .
+      - run: git commit -m "update package"
       - run: npm i @shummy1991/package-test@latest
       - run: git push
         env:
