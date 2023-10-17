@@ -1,0 +1,29 @@
+name: Update Dependencies
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PACKAGE_DEPLOYER_PAT }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 17.0.0
+          registry-url: https://npm.pkg.github.com/
+      - run: |
+          git config --global user.name "Shummy1991"
+          git config --global user.email "shummy1991@gmail.com"
+
+      - run: npm ci
+      - run: npm i @shummy1991/package-test@latest
+      - run: git push
+        env:
+          GH_TOKEN: ${{ github.token }}
